@@ -1,6 +1,9 @@
-const { intro, text, select, cancel, outro, isCancel } = require('@clack/prompts');
-const path = require("path")
-const fs = require("fs")
+#!/usr/bin/env node
+
+import { intro, text, select, cancel, outro, isCancel } from '@clack/prompts';
+import path from 'path'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
 
 function emptyDir(dirPath) {
     const dir = fs.readdirSync(dirPath, { withFileTypes: true })
@@ -77,7 +80,10 @@ async function start() {
         fs.mkdirSync(resolvedDir)
     }
 
-    fs.cpSync("./template", resolvedDir, { recursive: true })
+    fs.cpSync(path.resolve(
+        fileURLToPath(import.meta.url),
+        "../template"
+    ), resolvedDir, { recursive: true })
 
     let outroMessage = "Done. Now run:\n"
 
