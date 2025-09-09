@@ -1,0 +1,22 @@
+{
+  "name": "create-noctes.jsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamin-larsen/create-noctes.jsx.git"
+  },
+  "author": "Benjamin Larsen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/benjamin-larsen/create-noctes.jsx/issues"
+  },
+  "homepage": "https://github.com/benjamin-larsen/create-noctes.jsx#readme",
+  "devDependencies": {
+    "@clack/prompts": "^0.11.0"
+  }
+}
