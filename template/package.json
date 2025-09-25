@@ -8,9 +8,9 @@
   },
   "devDependencies": {
     "vite": "^7.1.2",
-    "noctes.jsx-vite-plugin": "^1.0.1"
+    "noctes.jsx-vite-plugin": "^2.0.0"
   },
   "dependencies": {
-    "noctes.jsx": "^0.2.0"
+    "noctes.jsx": "^1.0.0"
   }
 }

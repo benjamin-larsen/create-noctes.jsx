@@ -1,18 +1,18 @@
 import { ref } from 'noctes.jsx'
 
 export default {
-    onCreated() {
-        this.count = ref(0)
-    },
+  onCreated(ctx) {
+    ctx.count = ref(0)
+  },
 
-    render(props) {
-        return (
-            <>
-                <div>{ props.msg }</div>
-                <div class='card'>
-                    <button type='button' onclick={() => this.count.value++}>count is {this.count.value}</button>
-                </div>
-            </>
-        )
-    }
+  render(ctx, props) {
+    return (
+      <>
+        <div>{props.msg}</div>
+        <div class='card'>
+          <button type='button' onClick={() => ctx.count.value++}>count is ${ctx.count.value}</button>
+        </div>
+      </>
+    )
+  }
 }
