@@ -27,7 +27,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 
 // node_modules/sisteransi/src/index.js
 var require_src = __commonJS({
-  "node_modules/sisteransi/src/index.js"(exports2, module2) {
+  "node_modules/sisteransi/src/index.js"(exports, module) {
     "use strict";
     var ESC = "\x1B";
     var CSI = `${ESC}[`;
@@ -77,13 +77,13 @@ var require_src = __commonJS({
         return clear;
       }
     };
-    module2.exports = { cursor, scroll, erase, beep };
+    module.exports = { cursor, scroll, erase, beep };
   }
 });
 
 // node_modules/picocolors/picocolors.js
 var require_picocolors = __commonJS({
-  "node_modules/picocolors/picocolors.js"(exports2, module2) {
+  "node_modules/picocolors/picocolors.js"(exports, module) {
     var p2 = process || {};
     var argv = p2.argv || [];
     var env = p2.env || {};
@@ -148,17 +148,17 @@ var require_picocolors = __commonJS({
         bgWhiteBright: f("\x1B[107m", "\x1B[49m")
       };
     };
-    module2.exports = createColors();
-    module2.exports.createColors = createColors;
+    module.exports = createColors();
+    module.exports.createColors = createColors;
   }
 });
 
 // node_modules/@clack/core/dist/index.mjs
 var import_sisteransi = __toESM(require_src(), 1);
-var import_node_process = require("node:process");
-var import_node_readline = __toESM(require("node:readline"), 1);
-var import_node_stream = require("node:stream");
+import { stdin as j, stdout as M } from "node:process";
 var import_picocolors = __toESM(require_picocolors(), 1);
+import O from "node:readline";
+import { Writable as X } from "node:stream";
 function DD({ onlyFirst: e2 = false } = {}) {
   const t = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?(?:\\u0007|\\u001B\\u005C|\\u009C))", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"].join("|");
   return new RegExp(t, e2 ? void 0 : "g");
@@ -374,7 +374,7 @@ var h = (e2, u2, t) => (vD(e2, typeof u2 != "symbol" ? u2 + "" : u2, t), t);
 var x = class {
   constructor(u2, t = true) {
     h(this, "input"), h(this, "output"), h(this, "_abortSignal"), h(this, "rl"), h(this, "opts"), h(this, "_render"), h(this, "_track", false), h(this, "_prevFrame", ""), h(this, "_subscribers", /* @__PURE__ */ new Map()), h(this, "_cursor", 0), h(this, "state", "initial"), h(this, "error", ""), h(this, "value");
-    const { input: F2 = import_node_process.stdin, output: s = import_node_process.stdout, render: i, signal: D2, ...C2 } = u2;
+    const { input: F2 = j, output: s = M, render: i, signal: D2, ...C2 } = u2;
     this.opts = C2, this.onKeypress = this.onKeypress.bind(this), this.close = this.close.bind(this), this.render = this.render.bind(this), this._render = i.bind(this), this._track = t, this._abortSignal = D2, this.input = F2, this.output = s;
   }
   unsubscribe() {
@@ -403,10 +403,10 @@ var x = class {
           this.state = "cancel", this.close();
         }, { once: true });
       }
-      const F2 = new import_node_stream.Writable();
+      const F2 = new X();
       F2._write = (s, i, D2) => {
         this._track && (this.value = this.rl?.line.replace(/\t/g, ""), this._cursor = this.rl?.cursor ?? 0, this.emit("value", this.value)), D2();
-      }, this.input.pipe(F2), this.rl = import_node_readline.default.createInterface({ input: this.input, output: F2, tabSize: 2, prompt: "", escapeCodeTimeout: 50, terminal: true }), import_node_readline.default.emitKeypressEvents(this.input, this.rl), this.rl.prompt(), this.opts.initialValue !== void 0 && this._track && this.rl.write(this.opts.initialValue), this.input.on("keypress", this.onKeypress), m(this.input, true), this.output.on("resize", this.render), this.render(), this.once("submit", () => {
+      }, this.input.pipe(F2), this.rl = O.createInterface({ input: this.input, output: F2, tabSize: 2, prompt: "", escapeCodeTimeout: 50, terminal: true }), O.emitKeypressEvents(this.input, this.rl), this.rl.prompt(), this.opts.initialValue !== void 0 && this._track && this.rl.write(this.opts.initialValue), this.input.on("keypress", this.onKeypress), m(this.input, true), this.output.on("resize", this.render), this.render(), this.once("submit", () => {
         this.output.write(import_sisteransi.cursor.show), this.output.off("resize", this.render), m(this.input, false), u2(this.value);
       }), this.once("cancel", () => {
         this.output.write(import_sisteransi.cursor.show), this.output.off("resize", this.render), m(this.input, false), u2(S);
@@ -507,11 +507,11 @@ var RD = class extends x {
 };
 
 // node_modules/@clack/prompts/dist/index.mjs
-var import_node_process2 = __toESM(require("node:process"), 1);
 var import_picocolors2 = __toESM(require_picocolors(), 1);
 var import_sisteransi2 = __toESM(require_src(), 1);
+import y2 from "node:process";
 function ce() {
-  return import_node_process2.default.platform !== "win32" ? import_node_process2.default.env.TERM !== "linux" : !!import_node_process2.default.env.CI || !!import_node_process2.default.env.WT_SESSION || !!import_node_process2.default.env.TERMINUS_SUBLIME || import_node_process2.default.env.ConEmuTask === "{cmd::Cmder}" || import_node_process2.default.env.TERM_PROGRAM === "Terminus-Sublime" || import_node_process2.default.env.TERM_PROGRAM === "vscode" || import_node_process2.default.env.TERM === "xterm-256color" || import_node_process2.default.env.TERM === "alacritty" || import_node_process2.default.env.TERMINAL_EMULATOR === "JetBrains-JediTerm";
+  return y2.platform !== "win32" ? y2.env.TERM !== "linux" : !!y2.env.CI || !!y2.env.WT_SESSION || !!y2.env.TERMINUS_SUBLIME || y2.env.ConEmuTask === "{cmd::Cmder}" || y2.env.TERM_PROGRAM === "Terminus-Sublime" || y2.env.TERM_PROGRAM === "vscode" || y2.env.TERM === "xterm-256color" || y2.env.TERM === "alacritty" || y2.env.TERMINAL_EMULATOR === "JetBrains-JediTerm";
 }
 var V2 = ce();
 var u = (t, n) => V2 ? t : n;
@@ -630,15 +630,14 @@ ${import_picocolors2.default.gray(d2)}  ${t}
 var J2 = `${import_picocolors2.default.gray(o)}  `;
 
 // index.js
-var import_path = __toESM(require("path"), 1);
-var import_fs = __toESM(require("fs"), 1);
-var import_url = require("url");
-var import_meta = {};
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 function emptyDir(dirPath) {
-  const dir = import_fs.default.readdirSync(dirPath, { withFileTypes: true });
+  const dir = fs.readdirSync(dirPath, { withFileTypes: true });
   for (const file of dir) {
-    const filePath = import_path.default.resolve(dirPath, file.name);
-    import_fs.default.rmSync(filePath, { recursive: true, force: true });
+    const filePath = path.resolve(dirPath, file.name);
+    fs.rmSync(filePath, { recursive: true, force: true });
   }
 }
 async function start() {
@@ -652,10 +651,10 @@ async function start() {
     xe("Operation cancelled.");
     process.exit();
   }
-  const resolvedDir = import_path.default.resolve(process.cwd(), dir);
-  const relativePath = import_path.default.relative(process.cwd(), dir);
-  if (import_fs.default.existsSync(resolvedDir)) {
-    const stats = import_fs.default.statSync(resolvedDir);
+  const resolvedDir = path.resolve(process.cwd(), dir);
+  const relativePath = path.relative(process.cwd(), dir);
+  if (fs.existsSync(resolvedDir)) {
+    const stats = fs.statSync(resolvedDir);
     if (!stats.isDirectory()) {
       xe("This path is not a directory.");
       return;
@@ -693,10 +692,10 @@ async function start() {
       }
     }
   } else {
-    import_fs.default.mkdirSync(resolvedDir);
+    fs.mkdirSync(resolvedDir);
   }
-  import_fs.default.cpSync(import_path.default.resolve(
-    (0, import_url.fileURLToPath)(import_meta.url),
+  fs.cpSync(path.resolve(
+    fileURLToPath(import.meta.url),
     "../template"
   ), resolvedDir, { recursive: true });
   let outroMessage = "Done. Now run:\n";
